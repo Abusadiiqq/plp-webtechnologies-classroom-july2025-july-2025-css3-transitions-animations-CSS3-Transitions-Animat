@@ -1,59 +1,54 @@
-// Function to add a class to an element
-function addAnimationClass(elementId, className) {
-    const element = document.getElementById(elementId);
-    if (element) {
-        element.classList.add(className);
-        return true; // Return value indicating success
-    } else {
-        console.error(`Element with ID "${elementId}" not found.`);
-        return false; // Return value indicating failure
-    }
+// Part 2: JavaScript Functions
+
+// Function to generate a greeting message
+function createGreeting(name) {
+    let message = "Hello, " + name + "! Welcome to our interactive page."; // Local scope
+    return message;
 }
 
-// Function to remove a class from an element
-function removeAnimationClass(elementId, className) {
-    const element = document.getElementById(elementId);
-    if (element) {
-        element.classList.remove(className);
-        return true; // Return value indicating success
-    } else {
-        console.error(`Element with ID "${elementId}" not found.`);
-        return false; // Return value indicating failure
-    }
+// Function to display the greeting message
+function displayMessage(message, outputElementId) {
+    let outputElement = document.getElementById(outputElementId);
+    outputElement.textContent = message;
 }
 
-// Function to toggle a class on an element (combined example showing flexibility)
-function toggleAnimationClass(elementId, className) {
-    const element = document.getElementById(elementId);
-    if (element) {
-        element.classList.toggle(className);
-        return element.classList.contains(className); // Return true if the class is now present, false otherwise
-    } else {
-        console.error(`Element with ID "${elementId}" not found.`);
-        return null; // Return null if element is not found.  Important to indicate failure
-    }
+// Add event listener to the button
+document.getElementById("function-button").addEventListener("click", function() {
+    let userName = "User";  // You could prompt for user input here
+    let greeting = createGreeting(userName);
+    displayMessage(greeting, "message-output");
+});
+
+// Part 3: Combining CSS Animations with JavaScript
+
+// Function to toggle the 'rotated' class on an element
+function toggleRotation(elementId) {
+    let element = document.getElementById(elementId);
+    element.classList.toggle("rotated");
 }
 
+// Add event listener to trigger the rotation
+document.getElementById("trigger-animation-button").addEventListener("click", function() {
+    toggleRotation("target-element");
+});
 
-// Immediately Invoked Function Expression (IIFE) to create a scope
-(function() {
-    // Add event listener to the button
-    const startAnimationButton = document.getElementById("start-animation-button");
 
-    startAnimationButton.addEventListener("click", function() {
-        // Trigger the animation on the js-animated-box
-        let animationStarted = toggleAnimationClass("js-animated-box", "js-animated");
+// Example of a function with global scope (generally avoid overuse)
+let globalCounter = 0; // Global Scope
+function incrementCounter() {
+  globalCounter++;
+  console.log("Counter:", globalCounter);
+}
 
-        if (animationStarted) {
-            console.log("Animation started or resumed!");
-        } else {
-            console.log("Animation stopped or paused!");
-        }
+// Call the global counter from somewhere
+document.addEventListener('DOMContentLoaded', function() { // Ensures DOM is loaded
+  const element = document.getElementById("target-element");
+  element.addEventListener('click', incrementCounter);
+});
 
-    });
-
-    // Example of using the functions
-    // initial state can be set.  Important for more complex animations
-    removeAnimationClass("js-animated-box", "js-animated");
-
-})();
+// Card flip (Alternative method without CSS hover)
+/*
+document.querySelector('.card-container').addEventListener('click', function() {
+  document.querySelector('.card').classList.toggle('flipped');
+});
+*/
