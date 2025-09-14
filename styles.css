@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: sans-serif;
     margin: 0;
@@ -6,60 +7,133 @@ body {
     color: #333;
 }
 
-header, footer {
+header {
     background-color: #333;
-    color: white;
-    text-align: center;
+    color: #fff;
     padding: 1em 0;
+    text-align: center;
 }
 
 main {
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-.box {
+section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Part 1: CSS Transitions and Animations */
+#animated-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+#animated-button:hover {
+    background-color: #3e8e41; /* Darker Green */
+}
+
+#animated-box {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    margin-top: 20px;
+    transition: width 0.5s ease, height 0.5s ease, background-color 0.5s ease;
+}
+
+#animated-box:hover {
     width: 150px;
     height: 150px;
+    background-color: red;
+}
+
+#continuous-animation {
+    width: 50px;
+    height: 50px;
+    background-color: orange;
+    position: relative;
+    animation: moveBox 3s infinite alternate; /* Keyframe animation */
+}
+
+@keyframes moveBox {
+    0% { left: 0; border-radius: 0; }
+    100% { left: 200px; border-radius: 50%; }
+}
+
+/* Part 3: Combined CSS and JS */
+#target-element {
+    width: 100px;
+    height: 100px;
     background-color: lightblue;
-    margin: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Smooth transform */
+}
+
+.rotated {
+    transform: rotate(180deg);
+}
+
+
+/* Card flip styles */
+.card-container {
+    width: 200px;
+    height: 150px;
+    perspective: 1000px; /* Required for 3D transforms */
+    margin-top: 20px;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d; /* Important for 3D effect */
+    position: relative;
+}
+
+.card-container:hover .card {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hides the back side when facing away */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.front {
+    background-color: #2980b9;
     color: white;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition */
 }
 
-.box:hover {
-    background-color: lightcoral;
-    transform: scale(1.1);
-}
-
-/* Keyframe Animation */
-@keyframes colorChange {
-    0% { background-color: lightblue; }
-    50% { background-color: lightgreen; }
-    100% { background-color: lightblue; }
-}
-
-.js-animated {
-    animation: colorChange 2s infinite;
-}
-
-#start-animation-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
+.back {
+    background-color: #e74c3c;
     color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 20px;
+    transform: rotateY(180deg); /* Initially rotate the back */
 }
 
-#start-animation-button:hover {
-    background-color: #3e8e41;
+
+
+footer {
+    text-align: center;
+    padding: 1em 0;
+    background-color: #333;
+    color: #fff;
 }
